@@ -1,0 +1,31 @@
+name: Build
+on:
+  workflow_call:
+    outputs:
+      version:
+        description: Built version
+        value: ${{ jobs.build.outputs.version }}
+
+jobs:
+  build:
+    name: Gradle Build
+    runs-on: ubuntu-22.04
+    outputs:
+      version: ${{ steps.version.outputs.version }}
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - uses: gradle/gradle-build-action@v2
+      - name: Gradle Build
+        run: ./gradlew build
+      - name: Get Version
+        id: version
+        run: echo "version=$(./gradlew --console plain --quiet currentVersion -Prelease.quiet)" >> $GITHUB_OUTPUT
+      - name: Upload build
+        uses: actions/upload-artifact@v3
+        with:
+          name: build
+          path: build/libs/*.jar
+          retention-days: 7
+          if-no-files-found: error

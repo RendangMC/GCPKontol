@@ -1,0 +1,5 @@
+tpsThreshold: 12.0
+broadcastCommand: "broadcast This server will be restarted due to low TPS (Overloaded)"
+restartDelay: 0 # In seconds
+restartCommand: "restart"
+discordBroadcastMessage: ""

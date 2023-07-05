@@ -1,0 +1,11 @@
+name: GCPKontol
+main: org.clytage.gcpkontol.Main
+version: "${version}"
+api-version: "${apiVersion}"
+website: https://github.com/Clytage/GCPKontol
+author: Vinrer, Clytage
+libraries:
+  - org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlinVersion}
+depend:
+  - spark
+  - DiscordSRV

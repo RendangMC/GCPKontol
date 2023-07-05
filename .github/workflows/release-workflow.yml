@@ -1,0 +1,38 @@
+name: Create Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      versionIncrementer:
+        type: choice
+        description: Override the default version incrementer according to https://axion-release-plugin.readthedocs.io/en/latest/configuration/version/#incrementing
+        default: default
+        options:
+          - default
+          - incrementPatch
+          - incrementMinor
+          - incrementMajor
+          - incrementPrerelease
+
+jobs:
+  release:
+    name: Gradle Release
+    runs-on: ubuntu-22.04
+    outputs:
+      version: ${{ steps.version.outputs.version }}
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          token: "${{ secrets.PAT }}"
+          fetch-depth: 0
+      - uses: gradle/gradle-build-action@v2
+      - name: Gradle Release
+        if: ${{ inputs.versionIncrementer == 'default' }}
+        env:
+          DEPLOY_KEY: ${{ secrets.COMMIT_KEY }}
+        run: ./gradlew release
+      - name: Gradle Release w/ Increment Override
+        if: ${{ inputs.versionIncrementer != 'default' }}
+        env:
+          DEPLOY_KEY: ${{ secrets.COMMIT_KEY }}
+        run: ./gradlew release -Prelease.versionIncrementer=${{ inputs.versionIncrementer }}
