@@ -1,3 +1,3 @@
 # @clytage/GCPKontol
 
-Allows you to keep your server's CPU usage within your desired limits. It only works when your TPS server is down.
+Helps you maintain your server's CPU utilization within your preferred thresholds. This feature is only activated when your server's TPS drop.
