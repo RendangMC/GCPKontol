@@ -51,7 +51,7 @@ class Main : JavaPlugin(), Listener {
                                 .setDescription(discordBroadcastMessage)
                                 .setColor(Color.RED)
                                 .build()
-                        )
+                        ).queue()
                     }
                     scheduler.cancelTask(tpsCheckingThread!!)
                     if (restartDelay!! == 0) {
