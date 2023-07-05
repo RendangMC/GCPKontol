@@ -1,3 +1,3 @@
-# @clytage/GCPKontol
+# GCPKontol
 
-Allows you to maintain your server's CPU utilization within preferred thresholds. This feature is only activated when your server's TPS drop.
+A configurable plugin that allows you to keep your server CPU utilization. It will only work when the server TPS drop.
