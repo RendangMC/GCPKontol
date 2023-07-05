@@ -3,7 +3,7 @@ main: org.clytage.gcpkontol.Main
 version: "${version}"
 api-version: "${apiVersion}"
 website: https://github.com/Clytage/GCPKontol
-author: Vinrer, Clytage
+author: Vinrer, Clytage, Tiramitzu
 libraries:
   - org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlinVersion}
 depend:
