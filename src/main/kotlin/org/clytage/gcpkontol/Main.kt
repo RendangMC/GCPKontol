@@ -9,7 +9,6 @@ import org.bukkit.plugin.java.JavaPlugin
 import java.awt.Color
 import java.net.http.WebSocket.Listener
 
-
 class Main : JavaPlugin(), Listener {
     private var spark: Spark? = null
     private var tpsThreshold: Double? = null
@@ -28,10 +27,10 @@ class Main : JavaPlugin(), Listener {
         restartCommand = this.config.getString("restartCommand")
         discordBroadcastMessage = this.config.getString("discordBroadcastMessage")
 
-        this.logger.info("TPS Threshold: ${tpsThreshold.toString()}")
-        this.logger.info("Restart Delay: ${restartDelay.toString()} seconds")
-        this.logger.info("Broadcast Command: ${this.broadcastCommand.toString()}")
-        this.logger.info("Restart Command: ${this.restartCommand.toString()}")
+        this.logger.info("TPS Threshold: $tpsThreshold")
+        this.logger.info("Restart Delay: $restartDelay seconds")
+        this.logger.info("Broadcast Command: $broadcastCommand")
+        this.logger.info("Restart Command: $restartCommand")
         this.logger.info("Version: ${this.description.version}")
         this.logger.info("Author: ${this.description.authors.joinToString(", ")}")
 
@@ -48,11 +47,11 @@ class Main : JavaPlugin(), Listener {
                     logger.warning("This server overloaded. Starting restart mitigation in ${restartDelay!!} seconds")
                     if (DiscordSRV.getPlugin() !== null) {
                         DiscordSRV.getPlugin().mainTextChannel.sendMessageEmbeds(
-                                EmbedBuilder()
-                                    .setDescription(discordBroadcastMessage)
-                                    .setColor(Color.RED)
-                                    .build()
-                            )
+                            EmbedBuilder()
+                                .setDescription(discordBroadcastMessage)
+                                .setColor(Color.RED)
+                                .build()
+                        )
                     }
                     scheduler.cancelTask(tpsCheckingThread!!)
                     if (restartDelay!! == 0) {
