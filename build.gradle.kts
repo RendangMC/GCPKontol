@@ -80,7 +80,7 @@ dependencies {
 
 tasks {
     wrapper {
-        gradleVersion = "8.0.1"
+        gradleVersion = "8.2"
         distributionType = Wrapper.DistributionType.ALL
     }
 
