@@ -25,7 +25,7 @@ jobs:
         with:
           token: "${{ secrets.PAT }}"
           fetch-depth: 0
-      - uses: gradle/gradle-build-action@bd5760595778326ba7f1441bcf7e88b49de61a25 # v2
+      - uses: gradle/gradle-build-action@915a66c096a03101667f9df2e56c9efef558b165 # v2
       - name: Gradle Release
         if: ${{ inputs.versionIncrementer == 'default' }}
         env:
